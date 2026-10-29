@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rue Renoz 26 - Halloween Night</title>
+    <title>RUE RENOZ 26 - HALLOWEEN NIGHT</title>
     <style>
         body {
             background-color: #050202;
@@ -119,49 +119,49 @@
 
     <div id="main-content">
         <h1>RUE RENOZ 26</h1>
-        <div class="subtitle">Entra a tuo rischio e pericolo</div>
+        <div class="subtitle">Enter at your own risk</div>
 
-        <!-- Pulsante Atmosfera -->
+        <!-- Atmosphere Button -->
         <div class="card" style="text-align: center;">
-            <button onclick="playAtmosphere()">🎵 ATTIVA L'ATMOSFERA HORROR</button>
+            <button onclick="playAtmosphere()">🎵 TAP TO ACTIVATE HORROR ATMOSPHERE</button>
         </div>
 
-        <!-- STORIA INTERATTIVA -->
+        <!-- INTERACTIVE STORY -->
         <div class="card" id="story-card">
-            <h2 id="story-title">PARTE I: L'ARRIVO</h2>
+            <h2 id="story-title">PART I: THE ARRIVAL</h2>
             <p id="story-text">
-                È una notte fredda a Liegi. La nebbia copre la strada e ti ritrovi davanti al civico 26 di Rue Renoz. La porta del seminterrato è socchiusa, da dentro si sente un sussurro che pronuncia il tuo nome...
+                It is a freezing night in Liège. Thick fog blankets the street as you find yourself standing in front of number 26, Rue Renoz. The basement door is slightly open, and from the darkness inside, a whisper calls your name...
             </p>
             <div id="story-buttons">
-                <button onclick="nextStory(1)">Spingi la porta ed entra nel buio</button>
-                <button onclick="nextStory(2)">Bussi tre volte sulla porta di legno</button>
+                <button onclick="nextStory(1)">Push the door and step into the dark</button>
+                <button onclick="nextStory(2)">Knock three times on the wooden door</button>
             </div>
         </div>
 
-        <!-- QUIZ / TEST DEL CORAGGIO -->
+        <!-- QUIZ / COURAGE TEST -->
         <div class="card hidden" id="quiz-card">
-            <h2>TEST DEL CORAGGIO</h2>
-            <p>Sei bloccato nel seminterrato. Un'ombra alta si avvicina lentamente. Per sopravvivere devi rispondere correttamente:</p>
-            <p><strong>Cosa c'è scritto sul muro con la pittura rossa?</strong></p>
-            <button onclick="triggerJumpscare()">A) "Non guardare indietro"</button>
-            <button onclick="triggerJumpscare()">B) "La chiave è sotto la terra"</button>
-            <button onclick="triggerJumpscare()">C) "Nessuno esce da qui"</button>
+            <h2>COURAGE TEST</h2>
+            <p>You are trapped in the basement. A tall shadow slowly approaches from the corner. To survive, you must answer correctly:</p>
+            <p><strong>What is written on the wall in red paint?</strong></p>
+            <button onclick="triggerJumpscare()">A) "Do not look back"</button>
+            <button onclick="triggerJumpscare()">B) "The key is under the earth"</button>
+            <button onclick="triggerJumpscare()">C) "No one escapes from here"</button>
         </div>
 
-        <!-- MODULO REGISTRAZIONE -->
+        <!-- RSVP / DATA INPUT -->
         <div class="card hidden" id="rsvp-card">
-            <h2>REGISTRAZIONE</h2>
-            <p>Sei sopravvissuto al test... Inserisci il tuo nome per confermare la tua presenza alla serata di Halloween.</p>
-            <input type="text" id="guest-name" placeholder="Il tuo nome">
-            <button onclick="finishRSVP()">CONFERMA PRESENZA</button>
+            <h2>REGISTRATION</h2>
+            <p>You survived the test... Enter your name to confirm your attendance for the Halloween night.</p>
+            <input type="text" id="guest-name" placeholder="Your Name">
+            <button onclick="finishRSVP()">SUBMIT</button>
             <p id="final-message" style="color: #ff3333; text-align: center; font-weight: bold; margin-top: 15px;"></p>
         </div>
     </div>
 
-    <!-- SCHERMATA JUMPSCARE -->
+    <!-- JUMPSCARE SCREEN -->
     <div id="jumpscare-screen" class="hidden">
         <img src="IMG_d2f03bcb-f366-4 4d6-907e-eaf972459b 80.jpg" alt="Jumpscare">
-        <h1 style="color: #ff0000; font-size: 2rem; margin-top: 15px;">TI HO TROVATO!</h1>
+        <h1 style="color: #ff0000; font-size: 2rem; margin-top: 15px;">I FOUND YOU!</h1>
     </div>
 
     <script>
@@ -177,7 +177,7 @@
             return audioCtx;
         }
 
-        // SUONO 1: Atmosfera cupa
+        // SOUND 1: Dark Atmosphere
         function playAtmosphere() {
             let ctx = getAudioContext();
             let osc = ctx.createOscillator();
@@ -188,27 +188,27 @@
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start();
-            alert("Atmosfera audio attivata!");
+            alert("Audio atmosphere activated!");
         }
 
-        // Passaggi Storia
+        // Story progression
         function nextStory(step) {
             let storyText = document.getElementById("story-text");
             let storyTitle = document.getElementById("story-title");
             let storyButtons = document.getElementById("story-buttons");
 
             if (step === 1) {
-                storyTitle.innerText = "PARTE II: IL SEMINTERRATO";
-                storyText.innerText = "La porta si chiude di colpo alle tue spalle! Sei al buio totale. Senti dei passi pesanti scendere le scale di legno sopra di te...";
+                storyTitle.innerText = "PART II: THE BASEMENT";
+                storyText.innerText = "The door slams shut behind you! You are in total darkness. You hear heavy footsteps walking down the wooden stairs right above you...";
                 storyButtons.innerHTML = `
-                    <button onclick="nextStory(3)">Accendi la torcia del telefono</button>
-                    <button onclick="nextStory(3)">Rimani immobile nel silenzio</button>
+                    <button onclick="nextStory(3)">Turn on your phone flashlight</button>
+                    <button onclick="nextStory(3)">Stay completely silent</button>
                 `;
             } else if (step === 2) {
-                storyTitle.innerText = "PARTE II: LA RISPOSTA";
-                storyText.innerText = "Dopo il terzo rintocco, la porta si spalanca da sola. Una mano fredda ti afferra il braccio e ti trascina all'interno!";
+                storyTitle.innerText = "PART II: THE ANSWER";
+                storyText.innerText = "After the third knock, the door swings open by itself. A cold hand grabs your arm and pulls you inside!";
                 storyButtons.innerHTML = `
-                    <button onclick="nextStory(3)">Cerca di fuggire avanti</button>
+                    <button onclick="nextStory(3)">Try to run forward</button>
                 `;
             } else if (step === 3) {
                 document.getElementById("story-card").classList.add("hidden");
@@ -216,16 +216,16 @@
             }
         }
 
-        // SUONO 2: Jump Scare + Vibrazione
+        // SOUND 2: Jump Scare + Phone Vibration
         function triggerJumpscare() {
             let ctx = getAudioContext();
 
-            // Vibrazione telefono
+            // Phone vibration
             if ("vibrate" in navigator) {
                 navigator.vibrate([300, 100, 500, 100, 800]);
             }
 
-            // Suono acuto e spaventoso
+            // High-pitched scary sound effect
             let osc = ctx.createOscillator();
             let gain = ctx.createGain();
             osc.type = 'sawtooth';
@@ -241,10 +241,10 @@
             osc.start();
             osc.stop(ctx.currentTime + 0.6);
 
-            // Mostra il Jump Scare
+            // Show Jump Scare screen
             document.getElementById("jumpscare-screen").classList.remove("hidden");
 
-            // Rimuove il Jump Scare dopo 2.5 secondi e passa al modulo
+            // Hide Jump Scare after 2.5 seconds and show RSVP form
             setTimeout(() => {
                 document.getElementById("jumpscare-screen").classList.add("hidden");
                 document.getElementById("quiz-card").classList.add("hidden");
@@ -252,17 +252,17 @@
             }, 2500);
         }
 
-        // SUONO 3: Salvataggio Dati ("See you soon...")
+        // SOUND 3: Closing sound ("See you soon...")
         function finishRSVP() {
             let name = document.getElementById("guest-name").value;
             if (!name) {
-                alert("Inserisci il tuo nome!");
+                alert("Please enter your name!");
                 return;
             }
 
             let ctx = getAudioContext();
 
-            // Suono di conferma (due rintocchi cupi)
+            // Confirmation chime
             let osc = ctx.createOscillator();
             let gain = ctx.createGain();
             osc.type = 'sine';
