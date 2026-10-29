@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Party @ Rue Renoz 26</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            background-color: #050203;
+            color: #d1c7c7;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Creepster', cursive;
+            color: #8b0000;
+            font-size: 3rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px #ff0000, 0 0 5px #000;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: #0f0709;
+            border: 2px solid #5a0000;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            text-align: left;
+        }
+
+        .card h2 {
+            font-family: 'Creepster', cursive;
+            color: #cc0000;
+            margin-top: 0;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .story-text {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            background: #050203;
+            padding: 15px;
+            border-left: 4px solid #8b0000;
+            border-radius: 4px;
+            color: #b8a9a9;
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #8b0000 0%, #4a0000 100%);
+            color: #fff;
+            border: 1px solid #ff0000;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            box-sizing: border-box;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.6);
+        }
+
+        .btn:active {
+            background: #300000;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #18090c;
+            border: 1px solid #6b0000;
+            color: #ffffff;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #cc0000;
+        }
+
+        #scare-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: black;
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #scare-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #000;
+        }
+
+        .details-item {
+            font-size: 1.1rem;
+            margin: 12px 0;
+            border-bottom: 1px solid #2a0000;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>HALLOWEEN NIGHT</h1>
+    <div class="subtitle">Enter at your own risk...</div>
+
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-creepy-background-audio-2700.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="scare-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-scary-monster-scream-1960.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="btn" id="music-btn" onclick="toggleMusic()" style="margin-bottom: 20px;">🎵 Tap for Horror Atmosphere</button>
+
+    <div class="card" id="story-card">
+        <h2>THE STORY OF RUE RENOZ 26</h2>
+        <div class="story-text">
+            In 1923, a lone passenger arrived carrying a brass key marked with the number <strong>26</strong>. 
+            He walked into the fog of Rue Renoz and vanished into the shadows of the basement.<br><br>
+            Witnesses swore that before he disappeared, he opened a velvet sack and left behind a single warning message on the wall written in red ink: 
+            <em>"The third door stays locked until midnight."</em>
+        </div>
+
+        <h3 style="color:#cc0000; margin-top:25px; font-family:'Creepster', cursive; font-size:1.6rem; text-align:center;">BLOOD QUIZ</h3>
+        <p style="font-size:0.95rem; color:#aaa;">To unlock the party details, answer the question based on the story:</p>
+        
+        <label>Which door stays locked until midnight?</label>
+        <input type="text" id="quiz-answer" placeholder="Type your answer here...">
+        
+        <button class="btn" onclick="checkQuizAnswer()">SUBMIT ANSWER</button>
+        <p id="error-msg" style="color: #ff0000; font-weight: bold; display: none; margin-top: 10px; text-align:center;">Wrong answer... read the story again carefully!</p>
+    </div>
+
+    <div class="card" id="details-card" style="display:none;">
+        <h2>PARTY DETAILS</h2>
+        <div class="details-item">🎃 Halloween party @ Rue Renoz 26</div>
+        <div class="details-item">🗓️ Saturday 31st Oct — <strong>Start 19:00</strong></div>
+        <div class="details-item">👩🏾‍🎤 Costume competition</div>
+        <div class="details-item">🎭 Performance competition</div>
+        <div class="details-item">🍪 Bring some snacks and drinks 🍺</div>
+        <div class="details-item">🪩 Ending the night at Le Carré</div>
+    </div>
+
+    <div class="card" id="rsvp-card" style="display:none;">
+        <h2>RSVP - WILL YOU JOIN US?</h2>
+        <form action="https://formspree.io/f/xnppzbwn" method="POST">
+            <label>Your Name / Nickname:</label>
+            <input type="text" name="guest_name" required placeholder="Enter your name">
+
+            <label>Are you coming?</label>
+            <select name="attending" required>
+                <option value="Yes">Yes, I'm coming!</option>
+                <option value="No">No, I'm too scared...</option>
+            </select>
+
+            <label>Total number of people coming with you:</label>
+            <input type="number" name="total_people" min="1" max="10" value="1" required>
+
+            <label>What food or drinks are you bringing?</label>
+            <textarea name="bringing_items" rows="3" placeholder="e.g. Beer, vodka, chips, cookies..." required></textarea>
+
+            <button type="submit" class="btn" style="margin-top:20px; background: linear-gradient(180deg, #006600 0%, #003300 100%); border-color:#00ff00;">SEND RSVP</button>
+        </form>
+    </div>
+</div>
+
+<div id="scare-overlay">
+    <img id="scare-img" src="https://i.ibb.co/L50n11x/39936.jpg" alt="Horror Face">
+</div>
+
+<script>
+    let music = document.getElementById('bg-music');
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            document.getElementById('music-btn').innerText = '⏸ Pause Atmosphere';
+        } else {
+            music.pause();
+            document.getElementById('music-btn').innerText = '🎵 Tap for Horror Atmosphere';
+        }
+    }
+
+    function checkQuizAnswer() {
+        let answer = document.getElementById('quiz-answer').value.toLowerCase().trim();
+        let error = document.getElementById('error-msg');
+
+        if (answer.includes("third") || answer.includes("3") || answer.includes("terza")) {
+            error.style.display = 'none';
+            triggerJumpScare();
+        } else {
+            error.style.display = 'block';
+        }
+    }
+
+    function triggerJumpScare() {
+        let scareSound = document.getElementById('scare-sound');
+        let scareOverlay = document.getElementById('scare-overlay');
+        
+        scareOverlay.style.display = 'flex';
+        scareSound.play();
+
+        setTimeout(() => {
+            scareOverlay.style.display = 'none';
+            document.getElementById('story-card').style.display = 'none';
+            document.getElementById('details-card').style.display = 'block';
+            document.getElementById('rsvp-card').style.display = 'block';
+            window.scrollTo(0, 0);
+        }, 2500);
+    }
+</script>
+
+</body>
+</html>
