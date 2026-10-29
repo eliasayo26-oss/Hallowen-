@@ -1,248 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halloween Party @ Rue Renoz 26</title>
+    <title>HALLOWEEN NIGHT - ENTRANCE</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@400;700&display=swap');
-
         body {
-            background-color: #050203;
-            color: #d1c7c7;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 15px;
+            background-color: #050505;
+            color: #d1d1d1;
+            font-family: 'Courier New', Courier, monospace;
             text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
         }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
         h1 {
-            font-family: 'Creepster', cursive;
-            color: #8b0000;
-            font-size: 3rem;
-            margin-bottom: 5px;
-            text-shadow: 0 0 15px #ff0000, 0 0 5px #000;
+            color: #b30000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #400000;
+            font-size: 2.2rem;
             letter-spacing: 2px;
+            margin-bottom: 5px;
         }
-
         .subtitle {
-            font-size: 0.95rem;
-            color: #888;
+            color: #8c8c8c;
+            font-size: 0.9rem;
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .card {
-            background: #0f0709;
-            border: 2px solid #5a0000;
+            background-color: #121212;
+            border: 2px solid #330000;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            margin: 15px auto;
+            max-width: 500px;
+            box-shadow: 0 0 15px rgba(179, 0, 0, 0.2);
             text-align: left;
         }
-
         .card h2 {
-            font-family: 'Creepster', cursive;
-            color: #cc0000;
+            color: #e60000;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #330000;
+            padding-bottom: 8px;
             margin-top: 0;
-            text-align: center;
-            font-size: 2rem;
-            letter-spacing: 1px;
         }
-
-        .story-text {
+        p {
             line-height: 1.6;
-            font-size: 1.05rem;
-            background: #050203;
-            padding: 15px;
-            border-left: 4px solid #8b0000;
-            border-radius: 4px;
-            color: #b8a9a9;
+            font-size: 0.95rem;
         }
-
-        .btn {
-            background: linear-gradient(180deg, #8b0000 0%, #4a0000 100%);
-            color: #fff;
-            border: 1px solid #ff0000;
-            padding: 14px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 6px;
+        button, input[type="text"] {
+            background-color: #1a0000;
+            color: #ff3333;
+            border: 1px solid #800000;
+            padding: 12px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 10px;
             box-sizing: border-box;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(139, 0, 0, 0.6);
+            transition: 0.3s;
         }
-
-        .btn:active {
-            background: #300000;
+        button:hover {
+            background-color: #330000;
+            color: #ff6666;
+            box-shadow: 0 0 10px #ff0000;
         }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background: #18090c;
-            border: 1px solid #6b0000;
-            color: #ffffff;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            margin-top: 5px;
+        input[type="text"] {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
         }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-            color: #cc0000;
-        }
-
-        #scare-overlay {
+        .hidden {
             display: none;
+        }
+        /* Stile Jump Scare */
+        #jumpscare-screen {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: black;
-            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-
-        #scare-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background-color: #000;
-        }
-
-        .details-item {
-            font-size: 1.1rem;
-            margin: 12px 0;
-            border-bottom: 1px solid #2a0000;
-            padding-bottom: 8px;
+        #jumpscare-screen img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 50px #ff0000;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>HALLOWEEN NIGHT</h1>
-    <div class="subtitle">Enter at your own risk...</div>
+    <div id="main-content">
+        <h1>NOTTE DI HALLOWEEN</h1>
+        <div class="subtitle">L'ingresso è a proprio rischio...</div>
 
-    <audio id="bg-music" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-creepy-background-audio-2700.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="scare-sound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-scary-monster-scream-1960.mp3" type="audio/mpeg">
-    </audio>
-
-    <button class="btn" id="music-btn" onclick="toggleMusic()" style="margin-bottom: 20px;">🎵 Tap for Horror Atmosphere</button>
-
-    <div class="card" id="story-card">
-        <h2>THE STORY OF RUE RENOZ 26</h2>
-        <div class="story-text">
-            In 1923, a lone passenger arrived carrying a brass key marked with the number <strong>26</strong>. 
-            He walked into the fog of Rue Renoz and vanished into the shadows of the basement.<br><br>
-            Witnesses swore that before he disappeared, he opened a velvet sack and left behind a single warning message on the wall written in red ink: 
-            <em>"The third door stays locked until midnight."</em>
+        <!-- Pulsante Atmosfera -->
+        <div class="card" style="text-align: center;">
+            <button onclick="startAtmosphere()">🎵 TOCCA PER ATTIVARE L'ATMOSFERA</button>
         </div>
 
-        <h3 style="color:#cc0000; margin-top:25px; font-family:'Creepster', cursive; font-size:1.6rem; text-align:center;">BLOOD QUIZ</h3>
-        <p style="font-size:0.95rem; color:#aaa;">To unlock the party details, answer the question based on the story:</p>
-        
-        <label>Which door stays locked until midnight?</label>
-        <input type="text" id="quiz-answer" placeholder="Type your answer here...">
-        
-        <button class="btn" onclick="checkQuizAnswer()">SUBMIT ANSWER</button>
-        <p id="error-msg" style="color: #ff0000; font-weight: bold; display: none; margin-top: 10px; text-align:center;">Wrong answer... read the story again carefully!</p>
+        <!-- Sezione Storia Interattiva -->
+        <div class="card">
+            <h2>LA STORIA DI RUE RENOZ 26</h2>
+            <p id="story-text">
+                Nel 1923, un passeggero solitario arrivò nel nebbioso vicolo di Rue Renoz portando con sé una chiave d'ottone marchiata col numero 26. Sparì nell'ombra del seminterrato. Da allora, chiunque si sia avvicinato a quella porta ha sentito sussurri provenire dall'interno... Vuoi aprire la porta arrugginita?
+            </p>
+            <div id="story-choices">
+                <button onclick="nextStoryPart(1)">Apri la porta con cautela</button>
+                <button onclick="nextStoryPart(2)">Fuggi via dal vicolo</button>
+            </div>
+        </div>
+
+        <!-- Sezione Quiz e Jump Scare -->
+        <div class="card hidden" id="quiz-section">
+            <h2>TEST DEL CORAGGIO</h2>
+            <p>Per avanzare e confermare i tuoi dati, rispondi correttamente: Qual è l'unico modo per fermare l'entità di Rue Renoz 26?</p>
+            <button onclick="triggerJumpscare()">A) Bruciare la chiave d'ottone</button>
+            <button onclick="triggerJumpscare()">B) Chiamare aiuto ad alta voce</button>
+            <button onclick="triggerJumpscare()">C) Gridare il proprio nome tre volte</button>
+        </div>
+
+        <!-- Sezione RSVP / Dati -->
+        <div class="card hidden" id="rsvp-section">
+            <h2>REGISTRAZIONE COMPLETATA</h2>
+            <p>I tuoi dati sono stati salvati nelle tenebre. Ti aspettiamo presto.</p>
+            <p style="color: #ff3333; text-align: center; font-weight: bold;">See you soon...</p>
+        </div>
     </div>
 
-    <div class="card" id="details-card" style="display:none;">
-        <h2>PARTY DETAILS</h2>
-        <div class="details-item">🎃 Halloween party @ Rue Renoz 26</div>
-        <div class="details-item">🗓️ Saturday 31st Oct — <strong>Start 19:00</strong></div>
-        <div class="details-item">👩🏾‍🎤 Costume competition</div>
-        <div class="details-item">🎭 Performance competition</div>
-        <div class="details-item">🍪 Bring some snacks and drinks 🍺</div>
-        <div class="details-item">🪩 Ending the night at Le Carré</div>
+    <!-- Schermata Jump Scare (Inizialmente nascosta) -->
+    <div id="jumpscare-screen" class="hidden">
+        <img id="scare-img" src="IMG_d2f03bcb-f366-44d6-907e-eaf972459b80.jpg" alt="Jumpscare">
+        <h1 style="color: red; margin-top: 20px;">NON DOVEVI FARLO!</h1>
     </div>
 
-    <div class="card" id="rsvp-card" style="display:none;">
-        <h2>RSVP - WILL YOU JOIN US?</h2>
-        <form action="https://formspree.io/f/xnppzbwn" method="POST">
-            <label>Your Name / Nickname:</label>
-            <input type="text" name="guest_name" required placeholder="Enter your name">
+    <script>
+        // Audio contest per generare suoni spettrali senza file esterni
+        let audioCtx = null;
 
-            <label>Are you coming?</label>
-            <select name="attending" required>
-                <option value="Yes">Yes, I'm coming!</option>
-                <option value="No">No, I'm too scared...</option>
-            </select>
-
-            <label>Total number of people coming with you:</label>
-            <input type="number" name="total_people" min="1" max="10" value="1" required>
-
-            <label>What food or drinks are you bringing?</label>
-            <textarea name="bringing_items" rows="3" placeholder="e.g. Beer, vodka, chips, cookies..." required></textarea>
-
-            <button type="submit" class="btn" style="margin-top:20px; background: linear-gradient(180deg, #006600 0%, #003300 100%); border-color:#00ff00;">SEND RSVP</button>
-        </form>
-    </div>
-</div>
-
-<div id="scare-overlay">
-    <img id="scare-img" src="https://i.ibb.co/L50n11x/39936.jpg" alt="Horror Face">
-</div>
-
-<script>
-    let music = document.getElementById('bg-music');
-    function toggleMusic() {
-        if (music.paused) {
-            music.play();
-            document.getElementById('music-btn').innerText = '⏸ Pause Atmosphere';
-        } else {
-            music.pause();
-            document.getElementById('music-btn').innerText = '🎵 Tap for Horror Atmosphere';
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
         }
-    }
 
-    function checkQuizAnswer() {
-        let answer = document.getElementById('quiz-answer').value.toLowerCase().trim();
-        let error = document.getElementById('error-msg');
-
-        if (answer.includes("third") || answer.includes("3") || answer.includes("terza")) {
-            error.style.display = 'none';
-            triggerJumpScare();
-        } else {
-            error.style.display = 'block';
+        function startAtmosphere() {
+            initAudio();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            // Suono d'atmosfera cupo (drone basso)
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(55, audioCtx.currentTime); // Nota bassa
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            
+            alert("Atmosfera horror attivata nelle tue cuffie!");
         }
-    }
 
-    function triggerJumpScare() {
-        let scareSound = document.getElementById('scare-sound');
-        let scareOverlay = document.getElementById('scare-overlay');
-        
-        scareOverlay.style.display = 'flex';
-        scareSound.play();
+        function nextStoryPart(choice) {
+            initAudio();
+            // Suono effetto click / interazione
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
 
-        setTimeout(() => {
-            scareOverlay.style.display = 'none';
-            document.getElementById('story-card').style.display = 'none';
-            document.getElementById('details-card').style.display = 'block';
-            document.getElementById('rsvp-card').style.display = 'block';
-            window.scrollTo(0, 0);
-        }, 2500);
-    }
-</script>
+            if (choice === 1) {
+                document.getElementById('story-text').innerText = "La porta si apre cigolando pesantemente. Un gelido soffumo di vento ti spegne la candela. Una sagoma immobile ti fissa dal fondo della stanza buia. C'è un'ultima prova da superare...";
+                document.getElementById('story-choices').classList.add('hidden');
+                document.getElementById('quiz-section').classList.remove('hidden');
+            } else {
+                document.getElementById('story-text').innerText = "Hai provato a fuggire, ma i vicoli si sono richiusi formando un labirinto senza uscita. Sei costretto a tornare sui tuoi passi verso la porta 26...";
+            }
+        }
 
+        function triggerJumpscare() {
+            initAudio();
+            
+            // 1. Fai vibrare il telefono (se supportato dal browser)
+            if ("vibrate" in navigator) {
+                navigator.vibrate([500, 100, 500, 100, 800]);
+            }
+
+            // 2. Genera suono Jump Scare forte e distorto
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(60, audioCtx.currentTime + 0.8);
+            
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.8);
+
+            // 3. Mostra la schermata del Jumpscare con la tua immagine
+            document.getElementById('jumpscare-screen').classList.remove('hidden');
+
+            // Dopo 3 secondi, toglie il jumpscare e mostra la schermata finale con "See you soon..."
+            setTimeout(() => {
+                document.getElementById('jumpscare-screen').classList.add('hidden');
+                document.getElementById('quiz-section').classList.add('hidden');
+                document.getElementById('rsvp-section').classList.remove('hidden');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
