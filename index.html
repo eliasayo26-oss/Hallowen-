@@ -3,80 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HALLOWEEN NIGHT - ENTRANCE</title>
+    <title>Rue Renoz 26 - Halloween Night</title>
     <style>
         body {
-            background-color: #050505;
-            color: #d1d1d1;
+            background-color: #050202;
+            color: #d1c4c4;
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             margin: 0;
             overflow-x: hidden;
         }
+
         h1 {
-            color: #b30000;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #400000;
+            color: #8b0000;
+            text-shadow: 0 0 12px #ff0000, 0 0 25px #000000;
             font-size: 2.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+            letter-spacing: 3px;
+            margin-top: 10px;
         }
+
         .subtitle {
-            color: #8c8c8c;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
+            color: #7a7a7a;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
+
         .card {
-            background-color: #121212;
-            border: 2px solid #330000;
+            background-color: #0d0606;
+            border: 2px solid #4a0000;
             border-radius: 8px;
             padding: 20px;
             margin: 15px auto;
-            max-width: 500px;
-            box-shadow: 0 0 15px rgba(179, 0, 0, 0.2);
+            max-width: 480px;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
             text-align: left;
         }
+
         .card h2 {
-            color: #e60000;
-            font-size: 1.3rem;
-            border-bottom: 1px solid #330000;
+            color: #cc0000;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #3d0000;
             padding-bottom: 8px;
             margin-top: 0;
         }
+
         p {
             line-height: 1.6;
             font-size: 0.95rem;
         }
-        button, input[type="text"] {
+
+        button, input {
             background-color: #1a0000;
-            color: #ff3333;
+            color: #ff4d4d;
             border: 1px solid #800000;
-            padding: 12px 20px;
+            padding: 12px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            border-radius: 5px;
+            font-size: 0.95rem;
+            border-radius: 4px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
             box-sizing: border-box;
-            transition: 0.3s;
+            transition: 0.2s;
         }
+
         button:hover {
-            background-color: #330000;
-            color: #ff6666;
+            background-color: #400000;
+            color: #ffffff;
             box-shadow: 0 0 10px #ff0000;
         }
+
         input[type="text"] {
-            background-color: #000;
-            color: #fff;
+            background-color: #000000;
+            color: #ffffff;
             text-align: center;
         }
+
         .hidden {
-            display: none;
+            display: none !important;
         }
-        /* Stile Jump Scare */
+
+        /* JUMPSCARE SCREEN */
         #jumpscare-screen {
             position: fixed;
             top: 0;
@@ -84,151 +94,190 @@
             width: 100vw;
             height: 100vh;
             background-color: #000;
-            z-index: 9999;
+            z-index: 99999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            animation: flash 0.1s infinite alternate;
         }
+
         #jumpscare-screen img {
             max-width: 90%;
-            max-height: 80vh;
+            max-height: 75vh;
             border: 4px solid #ff0000;
-            box-shadow: 0 0 50px #ff0000;
+            box-shadow: 0 0 40px #ff0000;
+        }
+
+        @keyframes flash {
+            0% { background-color: #000; }
+            100% { background-color: #2b0000; }
         }
     </style>
 </head>
 <body>
 
     <div id="main-content">
-        <h1>NOTTE DI HALLOWEEN</h1>
-        <div class="subtitle">L'ingresso è a proprio rischio...</div>
+        <h1>RUE RENOZ 26</h1>
+        <div class="subtitle">Entra a tuo rischio e pericolo</div>
 
         <!-- Pulsante Atmosfera -->
         <div class="card" style="text-align: center;">
-            <button onclick="startAtmosphere()">🎵 TOCCA PER ATTIVARE L'ATMOSFERA</button>
+            <button onclick="playAtmosphere()">🎵 ATTIVA L'ATMOSFERA HORROR</button>
         </div>
 
-        <!-- Sezione Storia Interattiva -->
-        <div class="card">
-            <h2>LA STORIA DI RUE RENOZ 26</h2>
+        <!-- STORIA INTERATTIVA -->
+        <div class="card" id="story-card">
+            <h2 id="story-title">PARTE I: L'ARRIVO</h2>
             <p id="story-text">
-                Nel 1923, un passeggero solitario arrivò nel nebbioso vicolo di Rue Renoz portando con sé una chiave d'ottone marchiata col numero 26. Sparì nell'ombra del seminterrato. Da allora, chiunque si sia avvicinato a quella porta ha sentito sussurri provenire dall'interno... Vuoi aprire la porta arrugginita?
+                È una notte fredda a Liegi. La nebbia copre la strada e ti ritrovi davanti al civico 26 di Rue Renoz. La porta del seminterrato è socchiusa, da dentro si sente un sussurro che pronuncia il tuo nome...
             </p>
-            <div id="story-choices">
-                <button onclick="nextStoryPart(1)">Apri la porta con cautela</button>
-                <button onclick="nextStoryPart(2)">Fuggi via dal vicolo</button>
+            <div id="story-buttons">
+                <button onclick="nextStory(1)">Spingi la porta ed entra nel buio</button>
+                <button onclick="nextStory(2)">Bussi tre volte sulla porta di legno</button>
             </div>
         </div>
 
-        <!-- Sezione Quiz e Jump Scare -->
-        <div class="card hidden" id="quiz-section">
+        <!-- QUIZ / TEST DEL CORAGGIO -->
+        <div class="card hidden" id="quiz-card">
             <h2>TEST DEL CORAGGIO</h2>
-            <p>Per avanzare e confermare i tuoi dati, rispondi correttamente: Qual è l'unico modo per fermare l'entità di Rue Renoz 26?</p>
-            <button onclick="triggerJumpscare()">A) Bruciare la chiave d'ottone</button>
-            <button onclick="triggerJumpscare()">B) Chiamare aiuto ad alta voce</button>
-            <button onclick="triggerJumpscare()">C) Gridare il proprio nome tre volte</button>
+            <p>Sei bloccato nel seminterrato. Un'ombra alta si avvicina lentamente. Per sopravvivere devi rispondere correttamente:</p>
+            <p><strong>Cosa c'è scritto sul muro con la pittura rossa?</strong></p>
+            <button onclick="triggerJumpscare()">A) "Non guardare indietro"</button>
+            <button onclick="triggerJumpscare()">B) "La chiave è sotto la terra"</button>
+            <button onclick="triggerJumpscare()">C) "Nessuno esce da qui"</button>
         </div>
 
-        <!-- Sezione RSVP / Dati -->
-        <div class="card hidden" id="rsvp-section">
-            <h2>REGISTRAZIONE COMPLETATA</h2>
-            <p>I tuoi dati sono stati salvati nelle tenebre. Ti aspettiamo presto.</p>
-            <p style="color: #ff3333; text-align: center; font-weight: bold;">See you soon...</p>
+        <!-- MODULO REGISTRAZIONE -->
+        <div class="card hidden" id="rsvp-card">
+            <h2>REGISTRAZIONE</h2>
+            <p>Sei sopravvissuto al test... Inserisci il tuo nome per confermare la tua presenza alla serata di Halloween.</p>
+            <input type="text" id="guest-name" placeholder="Il tuo nome">
+            <button onclick="finishRSVP()">CONFERMA PRESENZA</button>
+            <p id="final-message" style="color: #ff3333; text-align: center; font-weight: bold; margin-top: 15px;"></p>
         </div>
     </div>
 
-    <!-- Schermata Jump Scare (Inizialmente nascosta) -->
+    <!-- SCHERMATA JUMPSCARE -->
     <div id="jumpscare-screen" class="hidden">
-        <img id="scare-img" src="IMG_d2f03bcb-f366-44d6-907e-eaf972459b80.jpg" alt="Jumpscare">
-        <h1 style="color: red; margin-top: 20px;">NON DOVEVI FARLO!</h1>
+        <img src="IMG_d2f03bcb-f366-4 4d6-907e-eaf972459b 80.jpg" alt="Jumpscare">
+        <h1 style="color: #ff0000; font-size: 2rem; margin-top: 15px;">TI HO TROVATO!</h1>
     </div>
 
     <script>
-        // Audio contest per generare suoni spettrali senza file esterni
         let audioCtx = null;
 
-        function initAudio() {
+        function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-        }
-
-        function startAtmosphere() {
-            initAudio();
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
-            // Suono d'atmosfera cupo (drone basso)
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(55, audioCtx.currentTime); // Nota bassa
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            
-            alert("Atmosfera horror attivata nelle tue cuffie!");
+            return audioCtx;
         }
 
-        function nextStoryPart(choice) {
-            initAudio();
-            // Suono effetto click / interazione
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.3);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        // SUONO 1: Atmosfera cupa
+        function playAtmosphere() {
+            let ctx = getAudioContext();
+            let osc = ctx.createOscillator();
+            let gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(40, ctx.currentTime);
+            gain.gain.setValueAtTime(0.08, ctx.currentTime);
             osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            gain.connect(ctx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
+            alert("Atmosfera audio attivata!");
+        }
 
-            if (choice === 1) {
-                document.getElementById('story-text').innerText = "La porta si apre cigolando pesantemente. Un gelido soffumo di vento ti spegne la candela. Una sagoma immobile ti fissa dal fondo della stanza buia. C'è un'ultima prova da superare...";
-                document.getElementById('story-choices').classList.add('hidden');
-                document.getElementById('quiz-section').classList.remove('hidden');
-            } else {
-                document.getElementById('story-text').innerText = "Hai provato a fuggire, ma i vicoli si sono richiusi formando un labirinto senza uscita. Sei costretto a tornare sui tuoi passi verso la porta 26...";
+        // Passaggi Storia
+        function nextStory(step) {
+            let storyText = document.getElementById("story-text");
+            let storyTitle = document.getElementById("story-title");
+            let storyButtons = document.getElementById("story-buttons");
+
+            if (step === 1) {
+                storyTitle.innerText = "PARTE II: IL SEMINTERRATO";
+                storyText.innerText = "La porta si chiude di colpo alle tue spalle! Sei al buio totale. Senti dei passi pesanti scendere le scale di legno sopra di te...";
+                storyButtons.innerHTML = `
+                    <button onclick="nextStory(3)">Accendi la torcia del telefono</button>
+                    <button onclick="nextStory(3)">Rimani immobile nel silenzio</button>
+                `;
+            } else if (step === 2) {
+                storyTitle.innerText = "PARTE II: LA RISPOSTA";
+                storyText.innerText = "Dopo il terzo rintocco, la porta si spalanca da sola. Una mano fredda ti afferra il braccio e ti trascina all'interno!";
+                storyButtons.innerHTML = `
+                    <button onclick="nextStory(3)">Cerca di fuggire avanti</button>
+                `;
+            } else if (step === 3) {
+                document.getElementById("story-card").classList.add("hidden");
+                document.getElementById("quiz-card").classList.remove("hidden");
             }
         }
 
+        // SUONO 2: Jump Scare + Vibrazione
         function triggerJumpscare() {
-            initAudio();
-            
-            // 1. Fai vibrare il telefono (se supportato dal browser)
+            let ctx = getAudioContext();
+
+            // Vibrazione telefono
             if ("vibrate" in navigator) {
-                navigator.vibrate([500, 100, 500, 100, 800]);
+                navigator.vibrate([300, 100, 500, 100, 800]);
             }
 
-            // 2. Genera suono Jump Scare forte e distorto
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
+            // Suono acuto e spaventoso
+            let osc = ctx.createOscillator();
+            let gain = ctx.createGain();
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(120, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
-            osc.frequency.exponentialRampToValueAtTime(60, audioCtx.currentTime + 0.8);
-            
-            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+            osc.frequency.setValueAtTime(100, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.6);
+
+            gain.gain.setValueAtTime(0.6, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.6);
 
             osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            gain.connect(ctx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.8);
+            osc.stop(ctx.currentTime + 0.6);
 
-            // 3. Mostra la schermata del Jumpscare con la tua immagine
-            document.getElementById('jumpscare-screen').classList.remove('hidden');
+            // Mostra il Jump Scare
+            document.getElementById("jumpscare-screen").classList.remove("hidden");
 
-            // Dopo 3 secondi, toglie il jumpscare e mostra la schermata finale con "See you soon..."
+            // Rimuove il Jump Scare dopo 2.5 secondi e passa al modulo
             setTimeout(() => {
-                document.getElementById('jumpscare-screen').classList.add('hidden');
-                document.getElementById('quiz-section').classList.add('hidden');
-                document.getElementById('rsvp-section').classList.remove('hidden');
-            }, 3000);
+                document.getElementById("jumpscare-screen").classList.add("hidden");
+                document.getElementById("quiz-card").classList.add("hidden");
+                document.getElementById("rsvp-card").classList.remove("hidden");
+            }, 2500);
+        }
+
+        // SUONO 3: Salvataggio Dati ("See you soon...")
+        function finishRSVP() {
+            let name = document.getElementById("guest-name").value;
+            if (!name) {
+                alert("Inserisci il tuo nome!");
+                return;
+            }
+
+            let ctx = getAudioContext();
+
+            // Suono di conferma (due rintocchi cupi)
+            let osc = ctx.createOscillator();
+            let gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(220, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.5);
+
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.5);
+
+            document.getElementById("final-message").innerText = "See you soon... " + name + " 🎃";
         }
     </script>
 </body>
