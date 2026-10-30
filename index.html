@@ -1,284 +1,811 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUE RENOZ 26 - HALLOWEEN NIGHT</title>
-    <style>
-        body {
-            background-color: #050202;
-            color: #d1c4c4;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            padding: 15px;
-            margin: 0;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Invitation | Halloween 2026</title>
 
-        h1 {
-            color: #8b0000;
-            text-shadow: 0 0 12px #ff0000, 0 0 25px #000000;
-            font-size: 2.2rem;
-            letter-spacing: 3px;
-            margin-top: 10px;
-        }
+<style>
+* { box-sizing: border-box; }
 
-        .subtitle {
-            color: #7a7a7a;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
+body {
+  margin: 0;
+  background: #080707;
+  color: #e8ded6;
+  font-family: Georgia, serif;
+  text-align: center;
+}
 
-        .card {
-            background-color: #0d0606;
-            border: 2px solid #4a0000;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 15px auto;
-            max-width: 480px;
-            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
-            text-align: left;
-        }
+button, input, select, textarea {
+  font: inherit;
+}
 
-        .card h2 {
-            color: #cc0000;
-            font-size: 1.2rem;
-            border-bottom: 1px solid #3d0000;
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
+button {
+  background: #791c19;
+  color: white;
+  border: 1px solid #a94338;
+  padding: 14px 22px;
+  margin: 7px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: .3s;
+}
 
-        p {
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+button:hover {
+  background: #b32b24;
+  box-shadow: 0 0 20px #a72b23;
+}
 
-        button, input {
-            background-color: #1a0000;
-            color: #ff4d4d;
-            border: 1px solid #800000;
-            padding: 12px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            box-sizing: border-box;
-            transition: 0.2s;
-        }
+button:disabled { opacity: .5; }
 
-        button:hover {
-            background-color: #400000;
-            color: #ffffff;
-            box-shadow: 0 0 10px #ff0000;
-        }
+.secondary {
+  background: transparent;
+}
 
-        input[type="text"] {
-            background-color: #000000;
-            color: #ffffff;
-            text-align: center;
-        }
+h1 {
+  color: #b8322b;
+  font-size: clamp(2.7rem, 9vw, 5rem);
+  letter-spacing: 4px;
+  text-shadow: 0 0 25px #7e0909;
+}
 
-        .hidden {
-            display: none !important;
-        }
+h2 {
+  color: #b83c33;
+  letter-spacing: 2px;
+}
 
-        /* JUMPSCARE SCREEN */
-        #jumpscare-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            animation: flash 0.1s infinite alternate;
-        }
+p {
+  line-height: 1.8;
+}
 
-        #jumpscare-screen img {
-            max-width: 90%;
-            max-height: 75vh;
-            border: 4px solid #ff0000;
-            box-shadow: 0 0 40px #ff0000;
-        }
+header {
+  min-height: 100vh;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(#08070799, #080707),
+    url("./halloween.jpg") center/cover;
+}
 
-        @keyframes flash {
-            0% { background-color: #000; }
-            100% { background-color: #2b0000; }
-        }
-    </style>
+.hosts {
+  color: #c8a9a0;
+  letter-spacing: 3px;
+}
+
+section {
+  padding: 65px 20px;
+  max-width: 760px;
+  margin: auto;
+}
+
+.panel {
+  background: #120d0d;
+  border: 1px solid #63231e;
+  padding: 25px;
+  margin: 22px auto;
+  line-height: 2;
+}
+
+.story {
+  min-height: 170px;
+  background: #130d0d;
+  border: 1px solid #61221e;
+  padding: 25px;
+  margin: 25px auto;
+  line-height: 2;
+}
+
+.small {
+  color: #927b73;
+  font-size: 13px;
+}
+
+.red {
+  color: #c43b32;
+}
+
+#story, #quiz, #rsvp, #ending {
+  display: none;
+}
+
+#jump {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: black;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#jump img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: flash .12s;
+}
+
+#jump h1 {
+  position: relative;
+  z-index: 2;
+  color: red;
+  font-size: clamp(3rem, 12vw, 7rem);
+  animation: shake .1s infinite;
+  text-shadow: 0 0 30px red;
+}
+
+#jump button {
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes shake {
+  0% { transform: translate(3px, 0); }
+  25% { transform: translate(-5px, 2px); }
+  50% { transform: translate(4px, -3px); }
+  75% { transform: translate(-3px, 3px); }
+  100% { transform: translate(2px, 0); }
+}
+
+@keyframes flash {
+  from { filter: brightness(4); }
+  to { filter: brightness(.7) contrast(1.5); }
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 20px;
+  background: #171010;
+  color: white;
+  border: 1px solid #63302b;
+}
+
+label {
+  display: block;
+  text-align: left;
+  color: #d4aaa0;
+}
+
+footer {
+  padding: 30px;
+  color: #755c55;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+</style>
 </head>
+
 <body>
 
-    <div id="main-content">
-        <h1>RUE RENOZ 26</h1>
-        <div class="subtitle">Enter at your own risk</div>
+<header>
+  <p>AN INVITATION FROM</p>
+  <h2>ANNA · ELISA · RIYA · NAZIHA</h2>
 
-        <!-- Atmosphere Button -->
-        <div class="card" style="text-align: center;">
-            <button onclick="playAtmosphere()">🎵 TAP TO ACTIVATE HORROR ATMOSPHERE</button>
-        </div>
+  <h1>THE LAST<br>INVITATION</h1>
 
-        <!-- INTERACTIVE STORY -->
-        <div class="card" id="story-card">
-            <h2 id="story-title">PART I: THE ARRIVAL</h2>
-            <p id="story-text">
-                It is a freezing night in Liège. Thick fog blankets the street as you find yourself standing in front of number 26, Rue Renoz. The basement door is slightly open, and from the darkness inside, a whisper calls your name...
-            </p>
-            <div id="story-buttons">
-                <button onclick="nextStory(1)">Push the door and step into the dark</button>
-                <button onclick="nextStory(2)">Knock three times on the wooden door</button>
-            </div>
-        </div>
+  <p>Four hosts. One night. No ordinary guests.</p>
 
-        <!-- QUIZ / COURAGE TEST -->
-        <div class="card hidden" id="quiz-card">
-            <h2>COURAGE TEST</h2>
-            <p>You are trapped in the basement. A tall shadow slowly approaches from the corner. To survive, you must answer correctly:</p>
-            <p><strong>What is written on the wall in red paint?</strong></p>
-            <button onclick="triggerJumpscare()">A) "Do not look back"</button>
-            <button onclick="triggerJumpscare()">B) "The key is under the earth"</button>
-            <button onclick="triggerJumpscare()">C) "No one escapes from here"</button>
-        </div>
+  <p class="small">
+    SATURDAY · 31 OCTOBER 2026 · 19:00
+  </p>
 
-        <!-- RSVP / DATA INPUT -->
-        <div class="card hidden" id="rsvp-card">
-            <h2>REGISTRATION</h2>
-            <p>You survived the test... Enter your name to confirm your attendance for the Halloween night.</p>
-            <input type="text" id="guest-name" placeholder="Your Name">
-            <button onclick="finishRSVP()">SUBMIT</button>
-            <p id="final-message" style="color: #ff3333; text-align: center; font-weight: bold; margin-top: 15px;"></p>
-        </div>
+  <p>
+    You have received an invitation.<br>
+    But do you have the courage to accept it?
+  </p>
+
+  <button onclick="acceptInvitation()">
+    ACCEPT THE INVITATION
+  </button>
+
+  <button class="secondary" onclick="refuseInvitation()">
+    I DON'T DARE
+  </button>
+
+  <button class="secondary" onclick="toggleMusic()" id="musicButton">
+    PLAY THE HAUNTED MELODY
+  </button>
+
+  <p class="small">Headphones recommended.</p>
+</header>
+
+<section id="refusal" style="display:none">
+  <h2>ARE YOU SURE?</h2>
+  <p>
+    You can close this invitation.<br>
+    But that doesn't mean the invitation has forgotten you.
+  </p>
+  <button onclick="acceptInvitation()">I CHANGED MY MIND</button>
+</section>
+
+<section id="story">
+  <h2>THE HOUSE THAT REMEMBERS</h2>
+  <p class="small">CHAPTER I · THE INVITATION</p>
+
+  <div class="story" id="storyText">
+    At 23:47, an old envelope appears outside your door.
+
+    There is no stamp. No return address.
+
+    Only your name, written in black ink.
+
+    Inside, you find a photograph of a house.
+
+    On the back, someone has written:
+
+    "You have already been invited. You just haven't accepted yet."
+  </div>
+
+  <div id="storyChoices">
+    <button onclick="chapterOne(1)">OPEN THE PHOTOGRAPH</button>
+    <button class="secondary" onclick="chapterOne(2)">THROW IT AWAY</button>
+  </div>
+</section>
+
+<section id="chapterTwo" style="display:none">
+  <h2>CHAPTER II · THE HOUSE</h2>
+
+  <div class="story" id="chapterTwoText">
+    The photograph begins to change.
+
+    A dark figure appears behind the window.
+
+    Your phone lights up.
+
+    A message:
+
+    "Don't let it see you."
+  </div>
+
+  <div id="chapterTwoChoices">
+    <button onclick="chapterTwo(1)">LOOK THROUGH THE WINDOW</button>
+    <button class="secondary" onclick="chapterTwo(2)">HIDE AND WAIT</button>
+  </div>
+</section>
+
+<section id="chapterThree" style="display:none">
+  <h2>CHAPTER III · THE LAST DOOR</h2>
+
+  <div class="story" id="chapterThreeText">
+    You find yourself inside the house.
+
+    There is a locked door.
+
+    On it, a message:
+
+    "To leave, you must answer what I ask.
+
+    Fail, and I will remember your face."
+  </div>
+
+  <button onclick="showQuiz()">FACE THE FINAL QUESTION</button>
+</section>
+
+<section id="quiz">
+  <h2>THE FINAL QUESTION</h2>
+
+  <p>
+    I have keys, but no locks.<br>
+    I have space, but no rooms.<br>
+    You can enter, but cannot leave through me.<br>
+    What am I?
+  </p>
+
+  <div class="story">
+    <button class="secondary" onclick="checkAnswer(1)">
+      A PIANO
+    </button>
+
+    <button class="secondary" onclick="checkAnswer(2)">
+      A KEYBOARD
+    </button>
+
+    <button class="secondary" onclick="checkAnswer(3)">
+      A LOCKED DOOR
+    </button>
+  </div>
+
+  <p id="quizMessage" class="red"></p>
+</section>
+
+<div id="jump">
+  <img src="./halloween.jpg" alt="The creature">
+
+  <h1>BEHIND YOU.</h1>
+
+  <button onclick="escapeScare()">ESCAPE</button>
+</div>
+
+<section id="party">
+  <h2>THE HALLOWEEN GATHERING</h2>
+
+  <div class="panel">
+    <h1 style="font-size:2.5rem">31.10.2026</h1>
+
+    <h2>SATURDAY · 19:00</h2>
+
+    <p><strong>LOCATION</strong><br>
+    Rue Renoz 26</p>
+
+    <hr>
+
+    <h2>THE RULES OF THE NIGHT</h2>
+
+    <p>
+      <strong>01 · COSTUMES ARE MANDATORY</strong><br>
+      Everyone must arrive in a Halloween costume.
+      Choose your character carefully.
+    </p>
+
+    <p>
+      <strong>02 · KEEP IT SECRET</strong><br>
+      Do not reveal your costume before the party.
+      No spoilers. No hints. Let everyone discover
+      your character on the night itself.
+    </p>
+
+    <p>
+      <strong>03 · STAY IN CHARACTER</strong><br>
+      Once the party begins, your ordinary identity
+      stays outside. You must act, speak and behave
+      as your chosen character throughout the entire night.
+    </p>
+
+    <p>
+      <strong>04 · GAMES AND ACTIVITIES</strong><br>
+      Expect Halloween games, interactive activities,
+      challenges and unexpected surprises.
+      Everyone is encouraged to participate!
+    </p>
+
+    <p>
+      <strong>05 · COMPETITIONS</strong><br>
+      Best Costume Competition<br>
+      Best Performance Competition
+    </p>
+
+    <p>
+      <strong>06 · FOOD AND DRINKS</strong><br>
+      Bring some food, snacks or drinks to share.
+      Please tell us what you are bringing in the RSVP form.
+    </p>
+
+    <hr>
+
+    <h2>THE AFTER-PARTY</h2>
+
+    <p>
+      The night doesn't end at the house.
+
+      After the Halloween gathering, we'll all head
+      to <strong>Le Carré</strong> to continue the night!
+    </p>
+  </div>
+
+  <button onclick="showRSVP()">
+    JOIN THE GUEST LIST
+  </button>
+</section>
+
+<section id="rsvp">
+  <h2>THE GUEST REGISTER</h2>
+
+  <p>Every name leaves a trace.</p>
+
+  <form id="guestForm">
+
+    <input type="hidden" name="_subject"
+      value="New Halloween Party RSVP">
+
+    <label>Your name *</label>
+    <input
+      type="text"
+      name="name"
+      placeholder="Your name"
+      required
+    >
+
+    <label>Your email (optional)</label>
+    <input
+      type="email"
+      name="email"
+      placeholder="Your email"
+    >
+
+    <label>Will you attend? *</label>
+    <select name="attendance" id="attendance"
+      onchange="updateGuestCount()" required>
+      <option value="">Choose your answer</option>
+      <option value="Yes, I'm coming">Yes, I'm coming!</option>
+      <option value="No, I cannot attend">No, I cannot attend</option>
+    </select>
+
+    <div id="guestCountArea">
+      <label>How many people are coming? (Including yourself) *</label>
+      <input
+        type="number"
+        name="guest_count"
+        id="guestCount"
+        min="1"
+        max="30"
+        value="1"
+        required
+      >
     </div>
 
-    <!-- JUMPSCARE SCREEN -->
-    <div id="jumpscare-screen" class="hidden">
-        <img src="IMG_d2f03bcb-f366-4 4d6-907e-eaf972459b 80.jpg" alt="Jumpscare">
-        <h1 style="color: #ff0000; font-size: 2rem; margin-top: 15px;">I FOUND YOU!</h1>
-    </div>
+    <label>What food or snacks are you bringing?</label>
+    <textarea
+      name="food"
+      rows="3"
+      placeholder="Snacks, food, something delicious..."
+    ></textarea>
 
-    <script>
-        let audioCtx = null;
+    <label>What drinks are you bringing?</label>
+    <textarea
+      name="drinks"
+      rows="3"
+      placeholder="Water, juice, soft drinks..."
+    ></textarea>
 
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            return audioCtx;
+    <button type="submit" id="submitButton">
+      SEND MY ANSWER
+    </button>
+
+  </form>
+
+  <p id="formMessage" class="red"></p>
+</section>
+
+<section id="ending">
+  <h1 style="font-size:2.5rem">
+    YOUR NAME HAS BEEN RECORDED.
+  </h1>
+
+  <p>
+    We know you are coming.<br>
+    We know what you will bring.<br>
+    But we don't know if you will leave.
+  </p>
+
+  <h2>THERE IS NO TURNING BACK.</h2>
+
+  <p class="red">
+    SEE YOU ON OCTOBER 31ST.
+  </p>
+</section>
+
+<footer>
+  THE LAST INVITATION · HALLOWEEN 2026<br>
+  ANNA · ELISA · RIYA · NAZIHA
+</footer>
+
+<script>
+
+const ENDPOINT = "https://formspree.io/f/xnppzbwn";
+
+let audioContext;
+let musicTimer;
+let musicPlaying = false;
+
+function getAudio() {
+  if (!audioContext) {
+    audioContext = new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+
+  return audioContext;
+}
+
+// Original atmospheric horror melody
+function playNote(freq, duration, volume = 0.025) {
+  const ctx = getAudio();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "sine";
+  osc.frequency.value = freq;
+
+  gain.gain.setValueAtTime(0.001, ctx.currentTime);
+  gain.gain.linearRampToValueAtTime(
+    volume, ctx.currentTime + 0.5
+  );
+  gain.gain.exponentialRampToValueAtTime(
+    0.001, ctx.currentTime + duration
+  );
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + duration);
+}
+
+function toggleMusic() {
+  if (musicPlaying) {
+    clearInterval(musicTimer);
+    musicPlaying = false;
+
+    document.getElementById("musicButton")
+      .textContent = "PLAY THE HAUNTED MELODY";
+
+    return;
+  }
+
+  getAudio();
+  musicPlaying = true;
+
+  document.getElementById("musicButton")
+    .textContent = "STOP THE MELODY";
+
+  const melody = [
+    110, 164.81, 130.81, 196,
+    146.83, 110, 98, 164.81
+  ];
+
+  let i = 0;
+
+  musicTimer = setInterval(() => {
+    playNote(melody[i % melody.length], 3, 0.025);
+
+    if (i % 2 === 0) {
+      playNote(55, 4, 0.035);
+    }
+
+    i++;
+  }, 1700);
+}
+
+// Sudden jump scare sound
+function scareSound() {
+  const ctx = getAudio();
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "sawtooth";
+
+  osc.frequency.setValueAtTime(
+    100, ctx.currentTime
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    1000, ctx.currentTime + 0.15
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    60, ctx.currentTime + 1
+  );
+
+  gain.gain.setValueAtTime(0.001, ctx.currentTime);
+
+  gain.gain.linearRampToValueAtTime(
+    0.3, ctx.currentTime + 0.06
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001, ctx.currentTime + 1.2
+  );
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + 1.2);
+}
+
+function acceptInvitation() {
+  getAudio();
+
+  document.getElementById("refusal").style.display = "none";
+  document.getElementById("story").style.display = "block";
+
+  document.getElementById("story").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function refuseInvitation() {
+  document.getElementById("refusal").style.display = "block";
+
+  document.getElementById("refusal").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function chapterOne(choice) {
+  const text = document.getElementById("storyText");
+
+  if (choice === 1) {
+    text.textContent =
+      "You turn the photograph over. " +
+      "The house looks familiar. Too familiar. " +
+      "You recognise your own bedroom window. " +
+      "Someone is standing inside, watching you.";
+  } else {
+    text.textContent =
+      "You throw the photograph away. " +
+      "A few seconds later, your phone vibrates. " +
+      "A new photograph appears. " +
+      "It shows you standing in your room. " +
+      "Taken from behind.";
+  }
+
+  document.getElementById("storyChoices").innerHTML =
+    '<button onclick="continueOne()">CONTINUE</button>';
+}
+
+function continueOne() {
+  document.getElementById("story").style.display = "none";
+  document.getElementById("chapterTwo").style.display = "block";
+
+  document.getElementById("chapterTwo").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function chapterTwo(choice) {
+  const text = document.getElementById("chapterTwoText");
+
+  if (choice === 1) {
+    text.textContent =
+      "You look through the window. " +
+      "The figure is gone. But your reflection remains. " +
+      "It is smiling. You are not.";
+  } else {
+    text.textContent =
+      "You hide in the darkness. " +
+      "Something walks past your hiding place. " +
+      "Then it stops. A whisper reaches your ear: " +
+      "'I can see you.'";
+  }
+
+  document.getElementById("chapterTwoChoices").innerHTML =
+    '<button onclick="continueTwo()">FIND THE LAST DOOR</button>';
+}
+
+function continueTwo() {
+  document.getElementById("chapterTwo").style.display = "none";
+  document.getElementById("chapterThree").style.display = "block";
+
+  document.getElementById("chapterThree").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function showQuiz() {
+  document.getElementById("chapterThree").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+
+  document.getElementById("quiz").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function checkAnswer(answer) {
+  const message = document.getElementById("quizMessage");
+
+  if (answer === 2) {
+    message.textContent = "THE DOOR IS OPENING...";
+
+    setTimeout(() => {
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("jump").style.display = "flex";
+
+      scareSound();
+
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 400, 100, 600]);
+      }
+    }, 700);
+
+  } else {
+    message.textContent =
+      "WRONG. The house is still waiting. Think carefully...";
+  }
+}
+
+function escapeScare() {
+  document.getElementById("jump").style.display = "none";
+
+  document.getElementById("party").style.display = "block";
+
+  document.getElementById("party").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function showRSVP() {
+  document.getElementById("rsvp").style.display = "block";
+
+  document.getElementById("rsvp").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function updateGuestCount() {
+  const attendance = document.getElementById("attendance").value;
+  const area = document.getElementById("guestCountArea");
+  const count = document.getElementById("guestCount");
+
+  if (attendance === "No, I cannot attend") {
+    area.style.display = "none";
+    count.required = false;
+    count.disabled = true;
+    count.value = "0";
+  } else {
+    area.style.display = "block";
+    count.required = true;
+    count.disabled = false;
+    count.value = "1";
+  }
+}
+
+// Formspree RSVP submission
+document.getElementById("guestForm").addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const form = event.target;
+    const button = document.getElementById("submitButton");
+    const message = document.getElementById("formMessage");
+
+    button.disabled = true;
+    button.textContent = "SENDING...";
+    message.textContent = "";
+
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          "Accept": "application/json"
         }
+      });
 
-        // SOUND 1: Dark Atmosphere
-        function playAtmosphere() {
-            let ctx = getAudioContext();
-            let osc = ctx.createOscillator();
-            let gain = ctx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(40, ctx.currentTime);
-            gain.gain.setValueAtTime(0.08, ctx.currentTime);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            alert("Audio atmosphere activated!");
-        }
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
 
-        // Story progression
-        function nextStory(step) {
-            let storyText = document.getElementById("story-text");
-            let storyTitle = document.getElementById("story-title");
-            let storyButtons = document.getElementById("story-buttons");
+      document.getElementById("rsvp").style.display = "none";
+      document.getElementById("ending").style.display = "block";
 
-            if (step === 1) {
-                storyTitle.innerText = "PART II: THE BASEMENT";
-                storyText.innerText = "The door slams shut behind you! You are in total darkness. You hear heavy footsteps walking down the wooden stairs right above you...";
-                storyButtons.innerHTML = `
-                    <button onclick="nextStory(3)">Turn on your phone flashlight</button>
-                    <button onclick="nextStory(3)">Stay completely silent</button>
-                `;
-            } else if (step === 2) {
-                storyTitle.innerText = "PART II: THE ANSWER";
-                storyText.innerText = "After the third knock, the door swings open by itself. A cold hand grabs your arm and pulls you inside!";
-                storyButtons.innerHTML = `
-                    <button onclick="nextStory(3)">Try to run forward</button>
-                `;
-            } else if (step === 3) {
-                document.getElementById("story-card").classList.add("hidden");
-                document.getElementById("quiz-card").classList.remove("hidden");
-            }
-        }
+      document.getElementById("ending").scrollIntoView({
+        behavior: "smooth"
+      });
 
-        // SOUND 2: Jump Scare + Phone Vibration
-        function triggerJumpscare() {
-            let ctx = getAudioContext();
+      form.reset();
+      updateGuestCount();
 
-            // Phone vibration
-            if ("vibrate" in navigator) {
-                navigator.vibrate([300, 100, 500, 100, 800]);
-            }
+    } catch (error) {
 
-            // High-pitched scary sound effect
-            let osc = ctx.createOscillator();
-            let gain = ctx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(100, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
-            osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.6);
+      message.textContent =
+        "Something went wrong. Please try again.";
 
-            gain.gain.setValueAtTime(0.6, ctx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.6);
+      button.disabled = false;
+      button.textContent = "SEND MY ANSWER";
+    }
+  }
+);
 
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.6);
+</script>
 
-            // Show Jump Scare screen
-            document.getElementById("jumpscare-screen").classList.remove("hidden");
-
-            // Hide Jump Scare after 2.5 seconds and show RSVP form
-            setTimeout(() => {
-                document.getElementById("jumpscare-screen").classList.add("hidden");
-                document.getElementById("quiz-card").classList.add("hidden");
-                document.getElementById("rsvp-card").classList.remove("hidden");
-            }, 2500);
-        }
-
-        // SOUND 3: Closing sound ("See you soon...")
-        function finishRSVP() {
-            let name = document.getElementById("guest-name").value;
-            if (!name) {
-                alert("Please enter your name!");
-                return;
-            }
-
-            let ctx = getAudioContext();
-
-            // Confirmation chime
-            let osc = ctx.createOscillator();
-            let gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(220, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.5);
-
-            gain.gain.setValueAtTime(0.3, ctx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.5);
-
-            document.getElementById("final-message").innerText = "See you soon... " + name + " 🎃";
-        }
-    </script>
 </body>
 </html>
